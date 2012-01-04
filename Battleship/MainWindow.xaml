@@ -1,0 +1,26 @@
+﻿<Window x:Class="Battleship.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Battleship"
+        xmlns:view="clr-namespace:Battleship.View"
+        Title="{StaticResource AppTitle}" Height="600" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:Commands.NewGame}"
+                    Executed="ExecutedNewGame" />
+        <CommandBinding Command="{x:Static local:Commands.Exit}"
+                    Executed="ExecutedExit" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="{x:Static local:Commands.NewGame}"/>
+                <Separator />
+                <MenuItem Command="{x:Static local:Commands.Exit}" />
+            </MenuItem>
+        </Menu>
+        <DockPanel>
+            <view:SeaGrid x:Name="humanGrid" DockPanel.Dock="Left"/>
+            <view:SeaGrid x:Name="computerGrid" />
+        </DockPanel>
+    </DockPanel>
+</Window>

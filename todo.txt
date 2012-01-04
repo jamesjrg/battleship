@@ -1,0 +1,45 @@
+todo now:
+- you can click enemy data grid
+
+later:
+- when someone sinks a Battleship, show a popup box
+
+Model directory:
+- Ship and dervied ship types (name, num squares, squares left)
+- Player
+- derived ComputerPlayer
+- derived HumanPlayer
+
+View directory:
+- PlayerGrid
+- ComputerGrid
+
+ViewModel directory:
+- PlayerGridVM
+- ComputerGridVM
+
+Ship placement:
+- ships not allowed to be connected (unit test)
+- no diagonals (unit test)
+- could just brute force place new ship, then validate grid, then if not valid go back and place ship again, keep going to all placed on loop reaches v. high number
+
+Enemy AI:
+- try to make it functional style-ish if possible
+- store an in memory table of what the computer has seen before
+- also add info to this table which computer hasn't seen, but can infer
+- note that a ship square without a non-ship square showing the end needs some shots (until it has been sunk)
+- note a sunk Battleship must be surrounded by water
+
+Towards end of time:
+- maybe some unit tests, but include a note with submission saying they are not adequate, didn't want to spend too much time on it
+- credit game of life thing
+- search for "xxx"
+
+Not going to bother with:
+- Optionally make computer attack pattern random (options items in menu, or just a tick box in menu)
+- less space between cells
+- A game mode where each player gets 3 attacks before their opponent has to announce which ones hit.
+- human choosing ship placement
+
+
+
