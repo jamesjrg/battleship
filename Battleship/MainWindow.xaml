@@ -15,7 +15,7 @@
             <MenuItem Header="_File">
                 <MenuItem Command="{x:Static local:Commands.NewGame}"/>
                 <Separator />
-                <MenuItem Command="{x:Static local:Commands.Exit}" />
+                <MenuItem Command="{x:Static local:Commands.Exit}" />                
             </MenuItem>
         </Menu>
         <DockPanel>

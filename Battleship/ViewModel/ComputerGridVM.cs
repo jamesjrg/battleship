@@ -5,6 +5,8 @@ using System.Text;
 using Battleship.Model;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Battleship.ViewModel
 {
@@ -13,6 +15,11 @@ namespace Battleship.ViewModel
         public ComputerGridVM()
         {
             _player = new ComputerPlayer();
+        }
+
+        public override void Clicked(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("clicked");
         }
     }
 }

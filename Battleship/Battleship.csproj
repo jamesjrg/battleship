@@ -58,7 +58,7 @@
     <Compile Include="Model\ComputerPlayer.cs" />
     <Compile Include="Model\HumanPlayer.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\SquareType.cs" />
+    <Compile Include="Model\SeaSquare.cs" />
     <Compile Include="Model\Ship.cs" />
     <Compile Include="ViewModel\ComputerGridVM.cs" />
     <Compile Include="ViewModel\GridVMBase.cs" />

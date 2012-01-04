@@ -9,18 +9,18 @@ namespace Battleship.Model
     {
         const int GRID_SIZE = 10;
 
-        List<List<SquareType>> _myGrid = new List<List<SquareType>>();
-        public List<List<SquareType>> MyGrid { get { return _myGrid; } }
-        
-        List<List<SquareType>> enemyGrid = new List<List<SquareType>>();
+        List<List<SeaSquare>> _myGrid = new List<List<SeaSquare>>();
+        public List<List<SeaSquare>> MyGrid { get { return _myGrid; } }
+
+        List<List<SeaSquare>> enemyGrid = new List<List<SeaSquare>>();
 
         public Player()
         {
             for (int i = 0; i != GRID_SIZE; ++i)
             {
-                _myGrid.Add(new List<SquareType>());
+                _myGrid.Add(new List<SeaSquare>());
                 for (int j = 0; j != GRID_SIZE; ++j)
-                    _myGrid[i].Add(new SquareType());
+                    _myGrid[i].Add(new SeaSquare(i, j));
             }
         }
     }

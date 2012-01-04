@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Battleship.ViewModel;
 
 namespace Battleship.View
 {
@@ -22,6 +23,12 @@ namespace Battleship.View
         public SeaGrid()
         {
             InitializeComponent();
+        }
+
+        private void Item_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            GridVMBase vm = this.DataContext as GridVMBase;
+            vm.Clicked(sender, e);            
         }
     }
 }

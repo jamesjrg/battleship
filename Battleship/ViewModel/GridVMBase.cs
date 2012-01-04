@@ -5,15 +5,15 @@ using System.Text;
 using Battleship.Model;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Battleship.ViewModel
 {
-    class GridVMBase
+    abstract class GridVMBase
     {
         protected Player _player;
 
-        public List<List<SquareType>> MyGrid
-        //public List<List<string>> MyGrid
+        public List<List<SeaSquare>> MyGrid
         {
             get
             {
@@ -25,6 +25,10 @@ namespace Battleship.ViewModel
         {
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(_player.MyGrid);
             collectionView.Refresh();
+        }
+
+        public virtual void Clicked(object sender, MouseButtonEventArgs e)
+        {
         }
     }
 }

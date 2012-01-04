@@ -1,22 +1,13 @@
-todo now:
-- you can click enemy data grid
-
-later:
-- when someone sinks a Battleship, show a popup box
+todo:
+- make clciking enemy data grid change value of corresponding model, and display updates
+- add ships class, place ships on new game start
+- do actual logic of what hits on different types of thing do
+- when someone sinks a Battleship, show a popup box, when game is won or lost also show popup box
+- make enemy take their turns
+- enemy AI non stupid
 
 Model directory:
 - Ship and dervied ship types (name, num squares, squares left)
-- Player
-- derived ComputerPlayer
-- derived HumanPlayer
-
-View directory:
-- PlayerGrid
-- ComputerGrid
-
-ViewModel directory:
-- PlayerGridVM
-- ComputerGridVM
 
 Ship placement:
 - ships not allowed to be connected (unit test)
@@ -31,15 +22,20 @@ Enemy AI:
 - note a sunk Battleship must be surrounded by water
 
 Towards end of time:
-- maybe some unit tests, but include a note with submission saying they are not adequate, didn't want to spend too much time on it
-- credit game of life thing
+- include a note with submission saying not bothered with many unit tests
+- include a bit of credits:
+Some code in the project was based on:
+"WPF Apps With The Model-View-ViewModel Design Pattern" http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
+"John Conway's Game of Life in XAML/WPF using embedded Python" http://www.thinkbottomup.com.au/site/blog/Game_of_Life_in_XAML_WPF_using_embedded_Python
 - search for "xxx"
 
 Not going to bother with:
+- more unit tests
 - Optionally make computer attack pattern random (options items in menu, or just a tick box in menu)
 - less space between cells
 - A game mode where each player gets 3 attacks before their opponent has to announce which ones hit.
 - human choosing ship placement
-
-
-
+- is EventSetter for left button down in the right place?
+- make it so you can't highlight stuff in the listbox grids (either use a style to remove highlighting, or use an itemscontrol rather than a listbox)
+- rather than using PreviewMouseLeftButtonDown to collect clicks on grid, should either use code behind to add event handler for mouseleftbuttondown with extra "true" parameter, or otherwise remove the standard handler
+- maybe rather than deciding what happens on button click using binding, have subclasses of View/SeaGrid

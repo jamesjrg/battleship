@@ -21,17 +21,23 @@
 
     <DataTemplate x:Key="CellTemplate">
         <Border BorderThickness="2" BorderBrush="DarkGray" CornerRadius="2" Width="20" Height="20" >
-            <Rectangle Width="16" Fill ="{Binding State,
+                <Rectangle Width="16" Fill ="{Binding Type,
                     Converter={StaticResource ColorConverter}}" />
         </Border>
     </DataTemplate>
 
     <DataTemplate x:Key="RowTemplate">
-    <ListBox BorderThickness="0"
+            <ListBox BorderThickness="0"
         ItemsSource="{Binding}"
         Style="{StaticResource HorizontalListBox}"
-        ItemTemplate="{StaticResource CellTemplate}" />
-    </DataTemplate>
+        ItemTemplate="{StaticResource CellTemplate}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="Item_PreviewMouseLeftButtonDown" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </DataTemplate>
         
     </UserControl.Resources>
     
