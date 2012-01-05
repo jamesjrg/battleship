@@ -8,8 +8,7 @@ namespace Battleship.Model
     class Player
     {
         protected const int GRID_SIZE = 10;
-        static private int[] shipLengths = new int[] { 5, 4, 3, 3, 2 };
-
+        
         static protected Random rnd = new Random();
 
         public List<List<SeaSquare>> MyGrid { get; set; }
