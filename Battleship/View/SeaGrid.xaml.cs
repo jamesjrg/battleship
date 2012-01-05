@@ -31,6 +31,12 @@ namespace Battleship.View
             GridVMBase vm = this.DataContext as GridVMBase;
             ListBoxItem item = sender as ListBoxItem;
             SeaSquare content = item.Content as SeaSquare;
+
+            //XXX sometimes if you click really fast you can end up clicking on what the debugger says is a "ListBoxItem {DisconnectedItem}
+            //hunting down the exact cause would take ages, and might even be a bug in WPF or something
+            if (content == null)
+                return;
+
             vm.Clicked(content);            
         }
     }

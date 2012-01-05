@@ -42,7 +42,7 @@ namespace Battleship.Model
             }
         }
 
-        public bool IsSunk()
+        public bool FiredAt()
         {
             health--;
             return health == 0 ? true : false;

@@ -16,21 +16,26 @@ namespace Battleship
     /// </summary>
     public partial class MainWindow : Window
     {
-        HumanPlayer _humanPlayer = new HumanPlayer();
-        ComputerPlayer _computerPlayer = new ComputerPlayer();
+        HumanPlayer _humanPlayer;
+        ComputerPlayer _computerPlayer;
 
         HumanGridVM _humanGrid;
         ComputerGridVM _computerGrid;
         
         public MainWindow()
         {
+            _humanPlayer = new HumanPlayer();
+            _computerPlayer = new ComputerPlayer();
             _humanGrid = new HumanGridVM(_humanPlayer, _computerPlayer);
             _computerGrid = new ComputerGridVM(_humanPlayer, _computerPlayer);
+
+            _humanGrid.AddEventHandlers(_humanGrid, _computerGrid);
+            _computerGrid.AddEventHandlers(_humanGrid, _computerGrid);
         
             InitializeComponent();
             humanGrid.DataContext = _humanGrid;
             computerGrid.DataContext = _computerGrid;
-            _humanGrid.Refresh();
+            _humanGrid.Refresh();            
         }
 
         private void ExecutedNewGame(object sender, ExecutedRoutedEventArgs e)
@@ -38,7 +43,14 @@ namespace Battleship
             _humanPlayer.Reset();
             _computerPlayer.Reset();
             _humanGrid.Refresh();
-            _computerGrid.Refresh();
+            _computerGrid.Refresh();            
+        }
+
+        private void ExecutedAutomatedGame(object sender, ExecutedRoutedEventArgs e)
+        {
+            ExecutedNewGame(sender, e);
+            while (!_computerGrid.Clicked(null, true))
+            { }
         }
 
         private void ExecutedExit(object sender, ExecutedRoutedEventArgs e)

@@ -7,5 +7,9 @@ namespace Battleship.Model
 {
     class ComputerPlayer: Player
     {
+        public void TakeTurn(Player otherPlayer)
+        {
+            TakeTurnAutomated(otherPlayer);
+        }
     }
 }

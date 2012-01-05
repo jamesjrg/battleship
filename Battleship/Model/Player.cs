@@ -7,10 +7,10 @@ namespace Battleship.Model
 {
     class Player
     {
-        const int GRID_SIZE = 10;
+        protected const int GRID_SIZE = 10;
         static private int[] shipLengths = new int[] { 5, 4, 3, 3, 2 };
 
-        static Random rnd = new Random();
+        static protected Random rnd = new Random();
 
         public List<List<SeaSquare>> MyGrid { get; set; }
         public List<List<SeaSquare>> EnemyGrid { get; set; }
@@ -127,7 +127,7 @@ namespace Battleship.Model
             return false;
         }
 
-private void PlaceShips()
+        private void PlaceShips()
         {
             bool startAgain = false;
 
@@ -177,6 +177,20 @@ private void PlaceShips()
             SinkShip(i, EnemyGrid);
         }
 
+
+        protected void Fire(int row, int col, Player otherPlayer)
+        {
+            int damagedIndex;
+            bool isSunk;
+            SquareType newType = otherPlayer.FiredAt(row, col, out damagedIndex, out isSunk);
+            EnemyGrid[row][col].ShipIndex = damagedIndex;
+
+            if (isSunk)
+                EnemySunk(damagedIndex);
+            else
+                EnemyGrid[row][col].Type = newType;
+        }
+
         public SquareType FiredAt(int row, int col, out int damagedIndex, out bool isSunk)
         {
             isSunk = false;
@@ -189,7 +203,7 @@ private void PlaceShips()
                 case SquareType.Undamaged:
                     var square = MyGrid[row][col];
                     damagedIndex = square.ShipIndex;
-                    if (_myShips[damagedIndex].IsSunk())
+                    if (_myShips[damagedIndex].FiredAt())
                     {
                         MineSunk(square.ShipIndex);
                         isSunk = true;
@@ -205,6 +219,27 @@ private void PlaceShips()
                     goto default;
                 default:
                     throw new Exception("fail");
+            }
+        }
+
+        public bool NoShipsSadFace()
+        {
+            return _myShips.All(ship => ship.health == 0);
+        }
+
+        public void TakeTurnAutomated(Player otherPlayer)
+        {
+            bool takenShot = false;
+            while (!takenShot)
+            {
+                int row = rnd.Next(GRID_SIZE);
+                int col = rnd.Next(GRID_SIZE);
+
+                if (EnemyGrid[row][col].Type == SquareType.Unknown)
+                {
+                    Fire(row, col, otherPlayer);
+                    takenShot = true;
+                }
             }
         }
     }

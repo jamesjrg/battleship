@@ -14,14 +14,18 @@ namespace Battleship.ViewModel
         protected HumanPlayer _humanPlayer;
         protected ComputerPlayer _computerPlayer;
 
-        private event EventHandler RaiseRefreshEvent;
+        public event EventHandler RaiseRefreshEvent;
 
         public GridVMBase(HumanPlayer humanPlayer, ComputerPlayer computerPlayer)
         {
             _humanPlayer = humanPlayer;
             _computerPlayer = computerPlayer;
+        }
 
-            RaiseRefreshEvent += this.HandleRefreshEvent;
+        public void AddEventHandlers(GridVMBase grid1, GridVMBase grid2)
+        {
+            grid1.RaiseRefreshEvent += this.HandleRefreshEvent;
+            grid2.RaiseRefreshEvent += this.HandleRefreshEvent;
         }
 
         public void Refresh()
@@ -40,7 +44,7 @@ namespace Battleship.ViewModel
             RaiseRefreshEvent(this, null);
         }
 
-        public abstract void Clicked(SeaSquare content);
+        public abstract bool Clicked(SeaSquare content, bool automated=false);
         public abstract List<List<SeaSquare>> MyGrid { get; }
     }
 }

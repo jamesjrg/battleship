@@ -1,21 +1,14 @@
-todo:
-- when game is won or lost show popup box
-- make enemy take their turns with some basic rules on where they shoot
-
-Enemy AI:
-- has to follow basic rules of not shooting stuff it has already shot at 
-- don't bother with anything more advanced, don't want to spend too much time doing this
-
-Towards end of time:
-- include note re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with any unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships. FWIW the source is in a git repository.
-- note extra rule added: you can tell if a ship has been sunk or is merely damaged
-- search for "xxx"
+Release notes:
+- re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with any unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships
+- FWIW the source is in a git repository.
+- I added the extra rule that you can tell if a ship has been sunk or is merely damaged. I also added an "Automated Game" option in the menu to make two computer players play each other
 
 Sites code is vaguely based on:
 "WPF Apps With The Model-View-ViewModel Design Pattern" http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
 "John Conway's Game of Life in XAML/WPF using embedded Python" http://www.thinkbottomup.com.au/site/blog/Game_of_Life_in_XAML_WPF_using_embedded_Python
 
 Not going to bother with:
+- animation for when you or computer fire a shot into water
 - AI that realised things like e.g. note a sunk Battleship must be surrounded by water, a ship square without a non-ship square showing the end needs some shots (until it has been sunk), or other stuff
 - unit tests
 - Optionally make computer attack pattern random (options items in menu, or just a tick box in menu)
@@ -30,3 +23,5 @@ Not going to bother with:
 - about box, help
 - when someone sinks a ship, show a popup box
 - ship placement needs a few more rules (at least one square of freedom around a ship)
+- selection items have grey background whilst selected yet unfocused
+- fix the disconnecteditem bug (or determine if it is a bug in WPF), maybe this is relevant: http://social.msdn.microsoft.com/Forums/en-US/wpf/thread/36aec363-9e33-45bd-81f0-1325a735cc45/#611fccf2-737f-4309-a793-4001488b23aa

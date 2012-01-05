@@ -7,6 +7,8 @@
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:Commands.NewGame}"
                     Executed="ExecutedNewGame" />
+        <CommandBinding Command="{x:Static local:Commands.AutomatedGame}"
+                    Executed="ExecutedAutomatedGame" />
         <CommandBinding Command="{x:Static local:Commands.Exit}"
                     Executed="ExecutedExit" />
     </Window.CommandBindings>
@@ -14,6 +16,7 @@
         <Menu HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Command="{x:Static local:Commands.NewGame}"/>
+                <MenuItem Command="{x:Static local:Commands.AutomatedGame}"/>
                 <Separator />
                 <MenuItem Command="{x:Static local:Commands.Exit}" />                
             </MenuItem>

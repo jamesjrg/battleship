@@ -25,24 +25,39 @@ namespace Battleship.ViewModel
             }
         }
 
-
-        public override void Clicked(SeaSquare square)
+        //returns true if game is over, just for testing purposes
+        public override bool Clicked(SeaSquare square, bool automated)
         {
-            if (square.Type != SquareType.Unknown)
+            if (automated)
+                _humanPlayer.TakeTurnAutomated(_computerPlayer);
+            else
             {
-                MessageBox.Show("Please choose a new square");
-                return;
+                if (square.Type != SquareType.Unknown)
+                {
+                    MessageBox.Show("Please choose a new square");
+                    return false;
+                }
+
+                _humanPlayer.TakeTurn(square.Row, square.Col, _computerPlayer);
             }
 
-            int damagedIndex;
-            bool isSunk;
-            SquareType newType = _computerPlayer.FiredAt(square.Row, square.Col, out damagedIndex, out isSunk);
-            _humanPlayer.EnemyGrid[square.Row][square.Col].ShipIndex = damagedIndex;
-            if (isSunk)
-                _humanPlayer.EnemySunk(damagedIndex);
+            if (_computerPlayer.NoShipsSadFace())
+            {
+                MessageBox.Show("You win!");
+                return true;
+            }
             else
-                _humanPlayer.EnemyGrid[square.Row][square.Col].Type = newType;
+            {
+                _computerPlayer.TakeTurn(_humanPlayer);
+                if (_humanPlayer.NoShipsSadFace())
+                {
+                    MessageBox.Show("You lose :(");
+                    return true;
+                }
+            }
+
             OnRaiseRefresh();
+            return false;
         }
     }
 }

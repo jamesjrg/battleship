@@ -23,8 +23,9 @@ namespace Battleship.ViewModel
             }
         }
 
-        public override void Clicked(SeaSquare content)
+        public override bool Clicked(SeaSquare content, bool automated)
         {
+            return false;
         }
     }
 }
