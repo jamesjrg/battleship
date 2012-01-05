@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Battleship.ViewModel;
+using Battleship.Model;
 
 namespace Battleship
 {
@@ -15,11 +16,17 @@ namespace Battleship
     /// </summary>
     public partial class MainWindow : Window
     {
-        HumanGridVM _humanGrid = new HumanGridVM();
-        ComputerGridVM _computerGrid = new ComputerGridVM();
+        HumanPlayer _humanPlayer = new HumanPlayer();
+        ComputerPlayer _computerPlayer = new ComputerPlayer();
 
+        HumanGridVM _humanGrid;
+        ComputerGridVM _computerGrid;
+        
         public MainWindow()
         {
+            _humanGrid = new HumanGridVM(_humanPlayer, _computerPlayer);
+            _computerGrid = new ComputerGridVM(_humanPlayer, _computerPlayer);
+        
             InitializeComponent();
             humanGrid.DataContext = _humanGrid;
             computerGrid.DataContext = _computerGrid;

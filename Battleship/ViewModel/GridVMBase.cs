@@ -11,24 +11,17 @@ namespace Battleship.ViewModel
 {
     abstract class GridVMBase
     {
-        protected Player _player;
+        protected HumanPlayer _humanPlayer;
+        protected ComputerPlayer _computerPlayer;
 
-        public List<List<SeaSquare>> MyGrid
+        public GridVMBase(HumanPlayer humanPlayer, ComputerPlayer computerPlayer)
         {
-            get
-            {
-                return _player.MyGrid;
-            }
+            _humanPlayer = humanPlayer;
+            _computerPlayer = computerPlayer;
         }
 
-        public void Refresh()
-        {
-            ICollectionView collectionView = CollectionViewSource.GetDefaultView(_player.MyGrid);
-            collectionView.Refresh();
-        }
-
-        public virtual void Clicked(object sender, MouseButtonEventArgs e)
-        {
+        public virtual void Clicked(SeaSquare content)
+        {            
         }
     }
 }

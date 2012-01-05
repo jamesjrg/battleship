@@ -1,13 +1,8 @@
 todo:
-- make clciking enemy data grid change value of corresponding model, and display updates
-- add ships class, place ships on new game start
-- do actual logic of what hits on different types of thing do
+- ship placement
+- test ship fireat (maybe unit test)
 - when someone sinks a Battleship, show a popup box, when game is won or lost also show popup box
-- make enemy take their turns
-- enemy AI non stupid
-
-Model directory:
-- Ship and dervied ship types (name, num squares, squares left)
+- make enemy take their turns with some basic rules on where they shoot
 
 Ship placement:
 - ships not allowed to be connected (unit test)
@@ -15,21 +10,23 @@ Ship placement:
 - could just brute force place new ship, then validate grid, then if not valid go back and place ship again, keep going to all placed on loop reaches v. high number
 
 Enemy AI:
-- try to make it functional style-ish if possible
 - store an in memory table of what the computer has seen before
-- also add info to this table which computer hasn't seen, but can infer
-- note that a ship square without a non-ship square showing the end needs some shots (until it has been sunk)
-- note a sunk Battleship must be surrounded by water
+- has to follow basic rules of not shooting stuff it has already shot at 
+- don't bother with anything more advanced, don't want to spend too much time doing this
 
 Towards end of time:
-- include a note with submission saying not bothered with many unit tests
-- include a bit of credits:
-Some code in the project was based on:
-"WPF Apps With The Model-View-ViewModel Design Pattern" http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
-"John Conway's Game of Life in XAML/WPF using embedded Python" http://www.thinkbottomup.com.au/site/blog/Game_of_Life_in_XAML_WPF_using_embedded_Python
+- include note re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with many unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships. FWIW the source is in a git repository.
+- include note re: made no effort to prevent player from clicking so fast turns end up out of sync, given click events on computer grid don't wait for computer to finish their turn - though that would probably have to be very fast indeed
+- include note x and y are wrong way round
 - search for "xxx"
 
+Sites code is vaguely based on:
+"WPF Apps With The Model-View-ViewModel Design Pattern" http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
+"John Conway's Game of Life in XAML/WPF using embedded Python" http://www.thinkbottomup.com.au/site/blog/Game_of_Life_in_XAML_WPF_using_embedded_Python
+
 Not going to bother with:
+- prevent player from clicking so fast turns end up out of sync
+- AI that realised things like e.g. note a sunk Battleship must be surrounded by water, a ship square without a non-ship square showing the end needs some shots (until it has been sunk), or other stuff
 - more unit tests
 - Optionally make computer attack pattern random (options items in menu, or just a tick box in menu)
 - less space between cells
@@ -37,5 +34,7 @@ Not going to bother with:
 - human choosing ship placement
 - is EventSetter for left button down in the right place?
 - make it so you can't highlight stuff in the listbox grids (either use a style to remove highlighting, or use an itemscontrol rather than a listbox)
-- rather than using PreviewMouseLeftButtonDown to collect clicks on grid, should either use code behind to add event handler for mouseleftbuttondown with extra "true" parameter, or otherwise remove the standard handler
+- maybe rather than using PreviewMouseLeftButtonDown to collect clicks on grid, should use mousrleft down and HandledEventsToo (web says do in code behind, but looks like xaml also has the property), or otherwise remove the standard handler
 - maybe rather than deciding what happens on button click using binding, have subclasses of View/SeaGrid
+- could track ships with a ShipIndex field on SeaSquare and a list of ships in player, rather than as now just using logical rules to work out where ships begin and end, when they are sunk, etc
+- maybe sort out x and y to be the correct way round

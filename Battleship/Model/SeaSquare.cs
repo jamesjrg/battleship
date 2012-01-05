@@ -10,13 +10,13 @@ namespace Battleship.Model
     class SeaSquare
     {
         public SquareType Type {get; set;}
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int Row { get; private set;  }
+        public int Col { get; private set; }
 
-        public SeaSquare(int x, int y)
+        public SeaSquare(int row, int col)
         {
-            X = x;
-            Y = y;
+            Row = row;
+            Col = col;
         }
     }
 }

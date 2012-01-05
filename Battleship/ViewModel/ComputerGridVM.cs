@@ -12,14 +12,36 @@ namespace Battleship.ViewModel
 {
     class ComputerGridVM : GridVMBase
     {
-        public ComputerGridVM()
+        public ComputerGridVM(HumanPlayer humanPlayer, ComputerPlayer computerPlayer)
+            : base(humanPlayer, computerPlayer)
         {
-            _player = new ComputerPlayer();
         }
 
-        public override void Clicked(object sender, MouseButtonEventArgs e)
+        public List<List<SeaSquare>> MyGrid
         {
-            MessageBox.Show("clicked");
+            get
+            {
+                return _humanPlayer.EnemyGrid;
+            }
+        }
+
+        public void Refresh()
+        {
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(MyGrid);
+            collectionView.Refresh();
+        }
+
+        public override void Clicked(SeaSquare square)
+        {
+            if (square.Type != SquareType.Unknown)
+            {
+                MessageBox.Show("Please choose a new square");
+                return;
+            }
+
+            SquareType newType = _computerPlayer.FiredAt(square.Row, square.Col);
+            _humanPlayer.EnemyGrid[square.Row][square.Col].Type = newType;
+            Refresh();
         }
     }
 }

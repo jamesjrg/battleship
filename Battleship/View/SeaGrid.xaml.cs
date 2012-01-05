@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.ViewModel;
+using Battleship.Model;
 
 namespace Battleship.View
 {
@@ -28,7 +29,9 @@ namespace Battleship.View
         private void Item_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             GridVMBase vm = this.DataContext as GridVMBase;
-            vm.Clicked(sender, e);            
+            ListBoxItem item = sender as ListBoxItem;
+            SeaSquare content = item.Content as SeaSquare;
+            vm.Clicked(content);            
         }
     }
 }

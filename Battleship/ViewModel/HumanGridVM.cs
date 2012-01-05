@@ -10,9 +10,23 @@ namespace Battleship.ViewModel
 {
     class HumanGridVM: GridVMBase
     {
-        public HumanGridVM()
+        public HumanGridVM(HumanPlayer humanPlayer, ComputerPlayer computerPlayer)
+            : base(humanPlayer, computerPlayer)
         {
-            _player = new HumanPlayer();
+        }
+
+        public List<List<SeaSquare>> MyGrid
+        {
+            get
+            {
+                return _humanPlayer.MyGrid;
+            }
+        }
+
+        public void Refresh()
+        {
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(MyGrid);
+            collectionView.Refresh();
         }
     }
 }
