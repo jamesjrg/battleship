@@ -17,7 +17,7 @@ namespace Battleship.ViewModel
         {
         }
 
-        public List<List<SeaSquare>> MyGrid
+        public override List<List<SeaSquare>> MyGrid
         {
             get
             {
@@ -25,11 +25,6 @@ namespace Battleship.ViewModel
             }
         }
 
-        public void Refresh()
-        {
-            ICollectionView collectionView = CollectionViewSource.GetDefaultView(MyGrid);
-            collectionView.Refresh();
-        }
 
         public override void Clicked(SeaSquare square)
         {
@@ -39,9 +34,15 @@ namespace Battleship.ViewModel
                 return;
             }
 
-            SquareType newType = _computerPlayer.FiredAt(square.Row, square.Col);
-            _humanPlayer.EnemyGrid[square.Row][square.Col].Type = newType;
-            Refresh();
+            int damagedIndex;
+            bool isSunk;
+            SquareType newType = _computerPlayer.FiredAt(square.Row, square.Col, out damagedIndex, out isSunk);
+            _humanPlayer.EnemyGrid[square.Row][square.Col].ShipIndex = damagedIndex;
+            if (isSunk)
+                _humanPlayer.EnemySunk(damagedIndex);
+            else
+                _humanPlayer.EnemyGrid[square.Row][square.Col].Type = newType;
+            OnRaiseRefresh();
         }
     }
 }

@@ -8,23 +8,26 @@
     <UserControl.Resources>
 
     <view:ColorConverter x:Key="ColorConverter" />
-        
+
     <Style x:Key="HorizontalListBox">
-        <Setter Property="ListBox.ItemsPanel">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White" />
+        </Style.Resources>
+         <Setter Property="ListBox.ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+        </Style>
 
     <DataTemplate x:Key="CellTemplate">
         <Border BorderThickness="2" BorderBrush="DarkGray" CornerRadius="2" Width="20" Height="20" >
                 <Rectangle Width="16" Fill ="{Binding Type,
                     Converter={StaticResource ColorConverter}}" />
-        </Border>
-    </DataTemplate>
+        </Border>            
+        </DataTemplate>
 
     <DataTemplate x:Key="RowTemplate">
             <ListBox BorderThickness="0"
@@ -41,6 +44,14 @@
         
     </UserControl.Resources>
     
-    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}" Width="400" />
-    
+    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}" Width="400" >
+        <ListBox.Style>
+            <Style>
+                <Style.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White" />
+                </Style.Resources>
+            </Style>
+        </ListBox.Style>
+     </ListBox>
+
 </UserControl>

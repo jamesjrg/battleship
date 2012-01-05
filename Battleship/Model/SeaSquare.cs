@@ -12,11 +12,18 @@ namespace Battleship.Model
         public SquareType Type {get; set;}
         public int Row { get; private set;  }
         public int Col { get; private set; }
+        public int ShipIndex { get; set; }
 
         public SeaSquare(int row, int col)
         {
             Row = row;
             Col = col;
+        }
+
+        public void Reset(SquareType type)
+        {
+            Type = type;
+            ShipIndex = -1;
         }
     }
 }

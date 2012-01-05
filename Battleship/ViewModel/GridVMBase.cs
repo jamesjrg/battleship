@@ -14,14 +14,33 @@ namespace Battleship.ViewModel
         protected HumanPlayer _humanPlayer;
         protected ComputerPlayer _computerPlayer;
 
+        private event EventHandler RaiseRefreshEvent;
+
         public GridVMBase(HumanPlayer humanPlayer, ComputerPlayer computerPlayer)
         {
             _humanPlayer = humanPlayer;
             _computerPlayer = computerPlayer;
+
+            RaiseRefreshEvent += this.HandleRefreshEvent;
         }
 
-        public virtual void Clicked(SeaSquare content)
-        {            
+        public void Refresh()
+        {
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(MyGrid);
+            collectionView.Refresh();
         }
+
+        void HandleRefreshEvent(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        protected void OnRaiseRefresh()
+        {
+            RaiseRefreshEvent(this, null);
+        }
+
+        public abstract void Clicked(SeaSquare content);
+        public abstract List<List<SeaSquare>> MyGrid { get; }
     }
 }

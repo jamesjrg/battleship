@@ -1,23 +1,14 @@
 todo:
-- ship placement
-- test ship fireat (maybe unit test)
-- when someone sinks a Battleship, show a popup box, when game is won or lost also show popup box
+- when game is won or lost show popup box
 - make enemy take their turns with some basic rules on where they shoot
 
-Ship placement:
-- ships not allowed to be connected (unit test)
-- no diagonals (unit test)
-- could just brute force place new ship, then validate grid, then if not valid go back and place ship again, keep going to all placed on loop reaches v. high number
-
 Enemy AI:
-- store an in memory table of what the computer has seen before
 - has to follow basic rules of not shooting stuff it has already shot at 
 - don't bother with anything more advanced, don't want to spend too much time doing this
 
 Towards end of time:
-- include note re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with many unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships. FWIW the source is in a git repository.
-- include note re: made no effort to prevent player from clicking so fast turns end up out of sync, given click events on computer grid don't wait for computer to finish their turn - though that would probably have to be very fast indeed
-- include note x and y are wrong way round
+- include note re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with any unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships. FWIW the source is in a git repository.
+- note extra rule added: you can tell if a ship has been sunk or is merely damaged
 - search for "xxx"
 
 Sites code is vaguely based on:
@@ -25,16 +16,17 @@ Sites code is vaguely based on:
 "John Conway's Game of Life in XAML/WPF using embedded Python" http://www.thinkbottomup.com.au/site/blog/Game_of_Life_in_XAML_WPF_using_embedded_Python
 
 Not going to bother with:
-- prevent player from clicking so fast turns end up out of sync
 - AI that realised things like e.g. note a sunk Battleship must be surrounded by water, a ship square without a non-ship square showing the end needs some shots (until it has been sunk), or other stuff
-- more unit tests
+- unit tests
 - Optionally make computer attack pattern random (options items in menu, or just a tick box in menu)
 - less space between cells
 - A game mode where each player gets 3 attacks before their opponent has to announce which ones hit.
 - human choosing ship placement
 - is EventSetter for left button down in the right place?
-- make it so you can't highlight stuff in the listbox grids (either use a style to remove highlighting, or use an itemscontrol rather than a listbox)
+- could use itemscontrol rather than listbox?
 - maybe rather than using PreviewMouseLeftButtonDown to collect clicks on grid, should use mousrleft down and HandledEventsToo (web says do in code behind, but looks like xaml also has the property), or otherwise remove the standard handler
 - maybe rather than deciding what happens on button click using binding, have subclasses of View/SeaGrid
-- could track ships with a ShipIndex field on SeaSquare and a list of ships in player, rather than as now just using logical rules to work out where ships begin and end, when they are sunk, etc
-- maybe sort out x and y to be the correct way round
+- things from bonus points
+- about box, help
+- when someone sinks a ship, show a popup box
+- ship placement needs a few more rules (at least one square of freedom around a ship)

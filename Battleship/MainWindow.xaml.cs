@@ -35,7 +35,10 @@ namespace Battleship
 
         private void ExecutedNewGame(object sender, ExecutedRoutedEventArgs e)
         {
-            //xxx
+            _humanPlayer.Reset();
+            _computerPlayer.Reset();
+            _humanGrid.Refresh();
+            _computerGrid.Refresh();
         }
 
         private void ExecutedExit(object sender, ExecutedRoutedEventArgs e)

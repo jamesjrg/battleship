@@ -25,9 +25,9 @@ namespace Battleship.View
                 case SquareType.Undamaged:
                     return new SolidColorBrush(Colors.Black);
                 case SquareType.Damaged:
-                    return new SolidColorBrush(Colors.Black);
+                    return new SolidColorBrush(Colors.Orange);
                 case SquareType.Sunk:
-                    return new SolidColorBrush(Colors.Black);
+                    return new SolidColorBrush(Colors.Red);
             }
 
             throw new Exception("fail");

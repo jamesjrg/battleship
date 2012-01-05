@@ -15,7 +15,7 @@ namespace Battleship.ViewModel
         {
         }
 
-        public List<List<SeaSquare>> MyGrid
+        public override List<List<SeaSquare>> MyGrid
         {
             get
             {
@@ -23,10 +23,8 @@ namespace Battleship.ViewModel
             }
         }
 
-        public void Refresh()
+        public override void Clicked(SeaSquare content)
         {
-            ICollectionView collectionView = CollectionViewSource.GetDefaultView(MyGrid);
-            collectionView.Refresh();
         }
     }
 }
