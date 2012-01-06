@@ -9,7 +9,7 @@ namespace Battleship.Model
 
     class Ship
     {
-        public int health;
+        private int health;
 
         private readonly ShipType _type;
         
