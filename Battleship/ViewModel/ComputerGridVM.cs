@@ -28,8 +28,6 @@ namespace Battleship.ViewModel
         //returns true if game is over
         public override bool Clicked(SeaSquare square, bool automated)
         {
-            bool gameOver = false;
-
             if (automated)
                 _humanPlayer.TakeTurnAutomated(_computerPlayer);
             else
@@ -37,7 +35,7 @@ namespace Battleship.ViewModel
                 if (square.Type != SquareType.Unknown)
                 {
                     MessageBox.Show("Please choose a new square");
-                    gameOver = false;
+                    return false;
                 }
 
                 _humanPlayer.TakeTurn(square.Row, square.Col, _computerPlayer);
@@ -46,7 +44,7 @@ namespace Battleship.ViewModel
             if (_computerPlayer.NoShipsSadFace())
             {
                 MessageBox.Show("You win!");
-                gameOver = true;
+                return true;
             }
             else
             {
@@ -54,10 +52,11 @@ namespace Battleship.ViewModel
                 if (_humanPlayer.NoShipsSadFace())
                 {
                     MessageBox.Show("You lose :(");
-                    gameOver = true;
+                    return true;
                 }
             }
-            return gameOver;
+
+            return false;
         }
     }
 }
