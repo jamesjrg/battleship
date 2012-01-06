@@ -156,14 +156,14 @@ namespace Battleship.Model
 
         private void SinkShip(int i, List<List<SeaSquare>> grid)
         {
-            grid.ForEach(l =>
+            foreach (var row in grid)
             {
-                l.ForEach(s =>
+                foreach (var square in row)
                 {
-                    if (s.ShipIndex == i)
-                        s.Type = SquareType.Sunk;
-                });
-            });  
+                    if (square.ShipIndex == i)
+                        square.Type = SquareType.Sunk;
+                }
+            }
         }
 
         private void MineSunk(int i)

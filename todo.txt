@@ -1,6 +1,3 @@
-todo:
-- reduce lag between clicking and visual response
-
 Release notes:
 - re: bonus points: as it was taking me quite a lot of time anyway I have not bothered with any unit tests, the AI is just random (other than avoiding places it has already tried before), and there are no game modes or manual placing of ships
 - FWIW the source is in a git repository.
@@ -29,4 +26,5 @@ Not going to bother with:
 - selection items have grey background whilst selected yet unfocused
 - fix the disconnecteditem bug (or determine if it is a bug in WPF), maybe this is relevant: http://social.msdn.microsoft.com/Forums/en-US/wpf/thread/36aec363-9e33-45bd-81f0-1325a735cc45/#611fccf2-737f-4309-a793-4001488b23aa
 - use functional list All/Map for ship placement - though slicing and mapping multi dimensional lists is awkward enough even in Python etc, let alone C#
+- maybe ObservableSquare should be in ViewModel and two dimensional lists of SeaSquare should be converted to 2d observableseasquare lists in viewmodel, as otherwise model code is somewhat contaminated with view-type stuff, but then you have to add a load of code to keep observable seasquare in sync with seasquare, plus being observable is not necessarily inherently bad for model code?
 

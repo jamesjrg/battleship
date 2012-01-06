@@ -57,8 +57,6 @@ namespace Battleship.ViewModel
                     gameOver = true;
                 }
             }
-
-            OnRaiseRefresh();
             return gameOver;
         }
     }
