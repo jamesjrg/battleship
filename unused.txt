@@ -1,61 +1,8 @@
 <Menu Height="23" HorizontalAlignment="Stretch"
 
-
-<DataTemplate x:Key="CellTemplate">
-        <Border BorderThickness="2" BorderBrush="DarkGray" CornerRadius="2" Width="20" Height="20" >
-            <Rectangle Width="16">
-                <Rectangle.Fill>
-                    <Binding Path="Value" Converter="{StaticResource ColorConverter}">
-                        <Binding.ConverterParameter>
-                            <x:ArrayExtension Type="{x:Type media:Brush}">
-                                <x:StaticExtension Member="media:Brushes.White" />
-                                <x:StaticExtension Member="media:Brushes.HotPink" />
-                            </x:ArrayExtension>
-                        </Binding.ConverterParameter>
-                    </Binding>
-                </Rectangle.Fill>
-            </Rectangle>
-        </Border>
-    </DataTemplate>
-    
+   
 	<local:ScriptValueConverter x:Key="ColorConverter" Language="Python">
             <local:ScriptValueConverter.ForwardExpression>
                 (parameter[0] if value == 0 else parameter[1])
             </local:ScriptValueConverter.ForwardExpression>
         </local:ScriptValueConverter>
-
-
-		private bool IsSunk(int row, int col)
-        {
-            Func<int, int, bool> TestSquare = (testRow, testCol) => 
-            {   
-                if (MyGrid[testRow][testCol].Type == SquareType.Undamaged)
-                    return false;
-                return true;
-            };
-
-            //up and down
-            for (int i = row; i != -1 && MyGrid[i][col].Type != SquareType.Water; --i)
-            {
-                if (!TestSquare(i, col))
-                    return false;
-            }
-            for (int i = row; i != GRID_SIZE && MyGrid[i][col].Type != SquareType.Water; ++i)
-            {
-                if (!TestSquare(i, col))
-                    return false;
-            }
-            //left and right
-            for (int j = col; j != -1 && MyGrid[row][j].Type != SquareType.Water; --j)
-            {
-                if (!TestSquare(row, j))
-                    return false;
-            }
-            for (int j = row; j != GRID_SIZE && MyGrid[row][j].Type != SquareType.Water; ++j)
-            {
-                if (!TestSquare(row, j))
-                    return false;
-            }
-
-            return true;
-        }

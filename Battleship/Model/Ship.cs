@@ -9,7 +9,7 @@ namespace Battleship.Model
 
     class Ship
     {
-        private int health;
+        private int _health;
 
         private readonly ShipType _type;
         
@@ -31,7 +31,7 @@ namespace Battleship.Model
 
         public void Reincarnate()
         {
-            health = shipLengths[_type];
+            _health = shipLengths[_type];
         }
 
         public int Length
@@ -46,13 +46,13 @@ namespace Battleship.Model
         {
             get
             {
-                return health == 0 ? true : false;
+                return _health == 0 ? true : false;
             }
         }
 
         public bool FiredAt()
         {
-            health--;
+            _health--;
             return IsSunk;
         }
     }
