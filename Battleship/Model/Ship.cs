@@ -41,11 +41,19 @@ namespace Battleship.Model
                 return shipLengths[_type];
             }
         }
+        
+        public bool IsSunk
+        {
+            get
+            {
+                return health == 0 ? true : false;
+            }
+        }
 
         public bool FiredAt()
         {
             health--;
-            return health == 0 ? true : false;
+            return IsSunk;
         }
     }
 }

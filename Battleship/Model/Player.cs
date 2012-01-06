@@ -223,7 +223,7 @@ namespace Battleship.Model
 
         public bool NoShipsSadFace()
         {
-            return _myShips.All(ship => ship.health == 0);
+            return _myShips.All(ship => ship.IsSunk);
         }
 
         public void TakeTurnAutomated(Player otherPlayer)
