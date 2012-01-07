@@ -44,7 +44,8 @@
         
     </UserControl.Resources>
     
-    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}" Width="400" >
+    <StackPanel Width="300" Height="300">
+    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}" HorizontalContentAlignment="Center" Padding="20">
         <ListBox.Style>
             <Style>
                 <Style.Resources>
@@ -53,5 +54,6 @@
             </Style>
         </ListBox.Style>
      </ListBox>
-
+    </StackPanel>
+    
 </UserControl>
