@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:Battleship.View"
+             xmlns:vm="clr-namespace:Battleship.ViewModel"
              mc:Ignorable="d">
     <UserControl.Resources>
 
@@ -24,7 +25,7 @@
 
     <DataTemplate x:Key="CellTemplate">
         <Border BorderThickness="2" BorderBrush="DarkGray" CornerRadius="2" Width="20" Height="20" >
-                <Rectangle Width="16" Fill ="{Binding Type,
+                <Rectangle Fill ="{Binding Type,
                     Converter={StaticResource ColorConverter}}" />
         </Border>            
         </DataTemplate>
@@ -45,7 +46,10 @@
     </UserControl.Resources>
     
     <StackPanel Width="300" Height="300">
-    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}" HorizontalContentAlignment="Center" Padding="20">
+    <ListBox ItemsSource="{Binding MyGrid}" ItemTemplate="{StaticResource RowTemplate}"
+             HorizontalContentAlignment="Center" Padding="20"
+             d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+             Type=vm:HumanGridVM}">
         <ListBox.Style>
             <Style>
                 <Style.Resources>

@@ -15,6 +15,13 @@ namespace Battleship.ViewModel
         {
         }
 
+        //for design mode only
+        public HumanGridVM()
+            : base(null, null)
+        {
+            _humanPlayer = new HumanPlayer();
+        }
+
         public override List<List<SeaSquare>> MyGrid
         {
             get
